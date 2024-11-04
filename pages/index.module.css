@@ -1,0 +1,21 @@
+.containerBadge {
+    box-shadow: 0px 0px 20px 4px #c2c2c2;
+    justify-content: center;
+    align-items: center;
+    background: white;
+}
+
+.input {
+    margin: 1em 0em;
+}
+
+.backgroundImage {
+    /* background-image: url('../assets/tu_banca.png'); */
+    /* width: 100%;
+    position: absolute;
+    height: 100%;
+    z-index: -1; */
+    background-color: #99d9d9;
+    background-repeat: round;
+    height: 100vh;
+}

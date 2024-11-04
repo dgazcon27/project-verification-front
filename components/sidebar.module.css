@@ -1,0 +1,10 @@
+.containerIcon {
+    width: 2em !important;
+    height: 2em !important;
+}
+
+.icon {
+    width: 2em !important;
+    height: 2em !important;
+    cursor: pointer;
+}

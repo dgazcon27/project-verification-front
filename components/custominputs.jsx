@@ -3,18 +3,21 @@ import { Input } from "@nextui-org/input";
 import { FaEyeSlash } from "react-icons/fa6";
 import { IoEye } from "react-icons/io5";
 
-const InputPassword = ({onChangeInput}) => {
+const InputPassword = ({ onChangeInput, classes }) => {
   const [isVisible, setIsVisible] = React.useState(false);
 
   const toggleVisibility = () => setIsVisible(!isVisible);
 
   return (
     <Input
-      label="Contaseña"
-      variant="bordered"
-      name="clientSecret"
+      className={`max-w-xs ${classes.input}`}
       endContent={
-        <button className="focus:outline-none" type="button" onClick={toggleVisibility} aria-label="toggle password visibility">
+        <button
+          aria-label="toggle password visibility"
+          className="focus:outline-none"
+          type="button"
+          onClick={toggleVisibility}
+        >
           {isVisible ? (
             <FaEyeSlash className="text-2xl text-default-400 pointer-events-none" />
           ) : (
@@ -22,11 +25,13 @@ const InputPassword = ({onChangeInput}) => {
           )}
         </button>
       }
+      label="Contraseña"
+      name="password"
       type={isVisible ? "text" : "password"}
-      className="max-w-xs"
+      variant="bordered"
       onChange={onChangeInput}
     />
   );
-}
+};
 
 export default InputPassword;
