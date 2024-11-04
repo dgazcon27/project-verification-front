@@ -1,5 +1,5 @@
 import { Input } from "@nextui-org/input";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "@nextui-org/button";
 import { v4 as uuidv4 } from "uuid";
 import Image from "next/image";
@@ -7,7 +7,8 @@ import Image from "next/image";
 import classes from "./index.module.css";
 
 import InputPassword from "@/components/custominputs";
-import Person from "@/assets/tu_banca_mobile.png";
+import Person_Mobile from "@/assets/tu_banca_mobile.png";
+import Person from "@/assets/tu_banca.png";
 import Banco from "@/assets/barbula bank.png";
 import {
   URL_BASE_VERIFICATION,
@@ -25,6 +26,29 @@ export default function IndexPage() {
   });
   const { saveData } = useLocalStorage("verification-data");
   const [isLoading, setIsLoading] = useState();
+
+  const [width, setWidth] = useState(0);
+
+  useEffect(() => {
+    // if (width > 767) {
+    //   window.onscroll = (e) => {
+    //     if (window.pageYOffset > 400) {
+    //       setIsScroll(true);
+    //     } else {
+    //       setIsScroll(false);
+    //     }
+    //   };
+    // }
+    const updateWidth = () => {
+      const width = document.body.clientWidth;
+      console.log(`CURRENT WIDTH ${width}`);
+      setWidth(width);
+    };
+
+    updateWidth();
+
+    window.addEventListener("resize", updateWidth);
+  }, [width]);
 
   const onChangeInput = (event) => {
     const { name, value } = event.target;
@@ -82,7 +106,7 @@ export default function IndexPage() {
             "Content-Type": "application/json",
             Authorization: `${token_type} ${access_token}`,
           },
-        },
+        }
       );
 
       const verifyParsed = await verifyResponse.json();
@@ -105,10 +129,10 @@ export default function IndexPage() {
               justifyContent: "center",
             }}
           >
-            <Image alt="Banco" src={Banco} />
+            <Image alt="Banco" className={classes.logoBank} src={Banco} />
           </div>
           <div>
-            <div className="flex w-full flex-wrap md:flex-nowrap gap-4">
+            <div className={`${classes.inputContainer} flex w-full flex-wrap md:flex-nowrap gap-4`}>
               <Input
                 className={`max-w-xs ${classes.input}`}
                 label="Usuario"
@@ -117,7 +141,7 @@ export default function IndexPage() {
                 onChange={onChangeInput}
               />
             </div>
-            <div className="flex w-full flex-wrap md:flex-nowrap gap-4">
+            <div className={`${classes.inputContainer} flex w-full flex-wrap md:flex-nowrap gap-4`}>
               <InputPassword classes={classes} onChangeInput={onChangeInput} />
             </div>
             <div style={{ display: "flex", justifyContent: "center" }}>
@@ -140,9 +164,19 @@ export default function IndexPage() {
           </div>
         </div>
       </div>
-      <div className="flex w-2/3">
+      <div className={`${classes.containerImage} flex w-2/3`}>
         <div>
-          <Image alt="Con lo mendoza se gana" className="" src={Person} />
+          {width <= 992 && (
+            <Image
+              alt="Con lo mendoza se gana"
+              className=""
+              style={{marginTop: '25%'}}
+              src={Person_Mobile}
+            />
+          )}
+          {width > 992 && (
+            <Image alt="Con lo mendoza se gana" className="" src={Person} />
+          )}
         </div>
       </div>
     </div>

@@ -9,6 +9,8 @@
     margin: 1em 0em;
 }
 
+
+
 .backgroundImage {
     /* background-image: url('../assets/tu_banca.png'); */
     /* width: 100%;
@@ -19,3 +21,27 @@
     background-repeat: round;
     height: 100vh;
 }
+
+@media (max-width: 992px) {
+    .logoBank {
+        width: 150px;
+        height: auto;
+    }
+
+    .inputContainer {
+        padding: 0 15px;
+    }
+}
+
+
+@media (max-width: 576px) {
+    .containerBadge {
+        width: 100%;
+    }
+
+    .containerImage {
+        display: none;
+    }
+
+}
+
