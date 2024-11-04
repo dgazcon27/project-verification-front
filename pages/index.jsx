@@ -14,6 +14,7 @@ import {
   URL_VERIFICATION_ENDPOINT,
   API_CLIENT,
   API_SECRET_CLIENT,
+  WEB_BANK_URL,
 } from "@/utils/constants";
 import useLocalStorage from "@/hooks/useLocalStorage";
 
@@ -67,7 +68,7 @@ export default function IndexPage() {
       const notification_url = process.env.NEXT_PUBLIC_WEBHOOK_VERIFICATION;
       const verifyObject = {
         reference,
-        redirect_url: `http://localhost:3000/verification/${reference}`,
+        redirect_url: `${WEB_BANK_URL}/verification/${reference}`,
         notification_url,
         reference_image: parseRes.image_reference,
       };
